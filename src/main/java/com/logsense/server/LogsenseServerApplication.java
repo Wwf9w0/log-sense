@@ -2,8 +2,10 @@ package com.logsense.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties
 public class LogsenseServerApplication {
 
 	public static void main(String[] args) {

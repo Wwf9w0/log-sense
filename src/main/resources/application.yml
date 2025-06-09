@@ -1,1 +1,22 @@
-spring.application.name=logsense-server
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/logsense_db
+    username: logsense_user
+    password: vAyne27miNE
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  elasticsearch:
+    uris: http://localhost:9200
+
+kafka:
+  address: localhost:9092
+  groupId: logsense-group
+  autoOffsetReset: earliest
+  topic:
+    ingestion: logIngestion

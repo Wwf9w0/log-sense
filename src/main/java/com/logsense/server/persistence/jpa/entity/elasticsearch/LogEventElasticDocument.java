@@ -2,6 +2,7 @@ package com.logsense.server.persistence.jpa.entity.elasticsearch;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -11,6 +12,7 @@ import java.time.Instant;
 import java.util.Map;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "logsense-event")
 public class LogEventElasticDocument {
