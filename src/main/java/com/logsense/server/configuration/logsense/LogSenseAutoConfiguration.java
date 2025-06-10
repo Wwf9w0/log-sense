@@ -1,11 +1,11 @@
 package com.logsense.server.configuration.logsense;
 
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.logsense.server.configuration.properties.LogSenseAppenderProperties;
 import com.logsense.server.service.LogSenseAppender;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -14,13 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(LogSenseAppenderProperties.class)
 @ConditionalOnProperty(prefix = "logsense.appender", name = "enabled", havingValue = "true")
+@RequiredArgsConstructor
 public class LogSenseAutoConfiguration {
 
     private final LogSenseAppenderProperties properties;
-
-    public LogSenseAutoConfiguration(LogSenseAppenderProperties properties) {
-        this.properties = properties;
-    }
 
     @PostConstruct
     public void initialize() {
