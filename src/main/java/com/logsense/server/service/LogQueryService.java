@@ -27,4 +27,12 @@ public class LogQueryService {
     public Iterable<LogEventElasticDocument> findAllLogEvent() {
         return logEventElasticRepository.findAll();
     }
+
+    public List<LogEventElasticDocument> searchLogs(String searchText, String serviceName) {
+        return logEventElasticRepository.searchLogs(searchText, serviceName);
+    }
+
+    public List<LogEventElasticDocument> searchLogsByServiceName(String serviceName) {
+        return logEventElasticRepository.findByServiceName(serviceName);
+    }
 }

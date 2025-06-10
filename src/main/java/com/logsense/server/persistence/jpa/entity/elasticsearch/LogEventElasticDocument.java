@@ -14,7 +14,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "logsense-event")
+@Document(indexName = "logsense-events")
 public class LogEventElasticDocument {
 
     @Id

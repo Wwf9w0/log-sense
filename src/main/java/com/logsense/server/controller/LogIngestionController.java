@@ -35,19 +35,4 @@ public class LogIngestionController {
         logProducerService.sendLogEvent(logEvent);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
-
-    @GetMapping("/grouped-logs")
-    public ResponseEntity<List<GroupedErrorEntity>> getGroupedErrors() {
-        return ResponseEntity.ok(logQueryService.findAllGroupedErrors());
-    }
-
-    @GetMapping("/detail/{errorHash}")
-    public ResponseEntity<List<LogEventElasticDocument>> getLogEventsByHash(@PathVariable String errorHash) {
-        return ResponseEntity.ok(logQueryService.findLogsByErrorHash(errorHash));
-    }
-
-    @GetMapping("/events")
-    public ResponseEntity<Iterable<LogEventElasticDocument>> getLogEvents() {
-        return ResponseEntity.ok(logQueryService.findAllLogEvent());
-    }
 }
