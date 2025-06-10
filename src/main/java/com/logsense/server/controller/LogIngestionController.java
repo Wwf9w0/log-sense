@@ -47,7 +47,7 @@ public class LogIngestionController {
     }
 
     @GetMapping("/events")
-    public ResponseEntity<Iterable<LogEventElasticDocument>> getLogEventsByHash() {
+    public ResponseEntity<Iterable<LogEventElasticDocument>> getLogEvents() {
         return ResponseEntity.ok(logQueryService.findAllLogEvent());
     }
 }
