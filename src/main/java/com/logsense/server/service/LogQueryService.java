@@ -15,7 +15,6 @@ public class LogQueryService {
 
     private final GroupedErrorEntityRepository groupedErrorEntityRepository;
     private final LogEventElasticRepository logEventElasticRepository;
-
     public List<GroupedErrorEntity> findAllGroupedErrors() {
         return groupedErrorEntityRepository.findAll();
     }

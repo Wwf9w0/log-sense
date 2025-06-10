@@ -14,7 +14,6 @@ import java.time.Instant;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "grouped_errors")
 public class GroupedErrorEntity {

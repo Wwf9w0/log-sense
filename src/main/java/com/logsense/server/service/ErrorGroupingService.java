@@ -1,5 +1,6 @@
 package com.logsense.server.service;
 
+import com.logsense.server.model.LogEvent;
 import com.logsense.server.persistence.jpa.entity.elasticsearch.LogEventElasticDocument;
 import com.logsense.server.persistence.jpa.entity.postgre.GroupedErrorEntity;
 import com.logsense.server.persistence.jpa.repository.GroupedErrorEntityRepository;
@@ -16,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Service
@@ -30,7 +32,7 @@ public class ErrorGroupingService {
 
 
     @Transactional
-    public void processLogEvent(LogEventElasticDocument logEvent) {
+    public void processLogEvent(LogEvent logEvent) {
         String template = createTemplate(logEvent.getMessage());
         String hash = createHash(template);
 
@@ -49,12 +51,12 @@ public class ErrorGroupingService {
         groupedError.setTotalOccurrences(groupedError.getTotalOccurrences() + 1);
         groupedError.setLastSeenAt(Instant.now());
         groupedErrorRepository.save(groupedError);
-        logEventRepository.save(logEvent);
+        logEventRepository.save(convertToDocument(logEvent));
         logger.info("Saved Log");
     }
 
     private String createTemplate(String message) {
-        if (Objects.isNull(message)) {
+        if (message == null) {
             return "";
         }
         return VARIABLE_PATTERN.matcher(message).replaceAll("*");
@@ -78,6 +80,19 @@ public class ErrorGroupingService {
 
         }
 
+    }
+
+    private LogEventElasticDocument convertToDocument(LogEvent event) {
+        LogEventElasticDocument document = new LogEventElasticDocument();
+        document.setId(UUID.randomUUID().toString());
+        document.setErrorHash(event.getErrorHash());
+        document.setMessage(event.getMessage());
+        document.setStackTrace(event.getStackTrace());
+        document.setServiceName(event.getServiceName());
+        document.setLogLevel(event.getLogLevel());
+        document.setTimestamp(event.getTimestamp());
+        document.setMetadata(event.getMdc());
+        return document;
     }
 
 }

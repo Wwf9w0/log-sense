@@ -20,7 +20,6 @@ public class LogQueryController {
 
     private final LogQueryService logQueryService;
 
-
     @GetMapping("/logs/{errorHash}")
     public ResponseEntity<List<LogEventElasticDocument>> getLogEventsByHash(@PathVariable String errorHash) {
         return ResponseEntity.ok(logQueryService.findLogsByErrorHash(errorHash));

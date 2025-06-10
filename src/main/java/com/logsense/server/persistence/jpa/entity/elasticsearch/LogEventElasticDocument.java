@@ -13,7 +13,6 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Document(indexName = "logsense-events")
 public class LogEventElasticDocument {
 
