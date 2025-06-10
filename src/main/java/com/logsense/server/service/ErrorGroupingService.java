@@ -30,7 +30,6 @@ public class ErrorGroupingService {
     private final GroupedErrorEntityRepository groupedErrorRepository;
     private final LogEventElasticRepository logEventRepository;
 
-
     @Transactional
     public void processLogEvent(LogEvent logEvent) {
         String template = createTemplate(logEvent.getMessage());
@@ -79,7 +78,6 @@ public class ErrorGroupingService {
             throw new RuntimeException("SHA-256 algorithm not found.", e);
 
         }
-
     }
 
     private LogEventElasticDocument convertToDocument(LogEvent event) {
@@ -94,5 +92,4 @@ public class ErrorGroupingService {
         document.setMetadata(event.getMdc());
         return document;
     }
-
 }

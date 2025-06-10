@@ -14,5 +14,4 @@ public interface LogEventElasticRepository extends ElasticsearchRepository<LogEv
     List<LogEventElasticDocument> searchLogs(String searchText, String serviceName);
 
     List<LogEventElasticDocument> findByServiceName(String serviceName);
-
 }

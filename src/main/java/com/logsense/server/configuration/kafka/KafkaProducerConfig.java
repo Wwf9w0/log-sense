@@ -2,7 +2,6 @@ package com.logsense.server.configuration.kafka;
 
 import com.logsense.server.configuration.properties.KafkaProperties;
 import com.logsense.server.model.LogEvent;
-import com.logsense.server.persistence.jpa.entity.elasticsearch.LogEventElasticDocument;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

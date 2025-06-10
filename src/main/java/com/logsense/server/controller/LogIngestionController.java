@@ -1,9 +1,7 @@
 package com.logsense.server.controller;
 
 import com.logsense.server.model.LogEventIngestionRequest;
-import com.logsense.server.persistence.jpa.entity.elasticsearch.LogEventElasticDocument;
 import com.logsense.server.service.LogProducerService;
-import com.logsense.server.service.LogQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Objects;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/logs")

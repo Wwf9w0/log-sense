@@ -15,7 +15,6 @@ public class LogConsumerService {
     private static final Logger logger = LoggerFactory.getLogger(LogConsumerService.class);
     private final ErrorGroupingService errorGroupingService;
 
-
     @KafkaListener(topics = "${kafka.topic.ingestion}", containerFactory = "kafkaListenerContainerFactory")
     public void listen(@Payload LogEvent event) {
         logger.info("Received log event from Kafka: {}", event.getServiceName());
@@ -25,5 +24,4 @@ public class LogConsumerService {
             logger.error("Error processing log event: " + event.getServiceName(), e);
         }
     }
-
 }

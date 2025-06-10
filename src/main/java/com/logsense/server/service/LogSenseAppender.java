@@ -37,8 +37,6 @@ public class LogSenseAppender extends AppenderBase<ILoggingEvent> {
         }catch (Exception e) {
             addError("Failed to send log to LogSense server", e);
         }
-
-
     }
 
     private LogEventDTO createDto(ILoggingEvent event) {
@@ -85,8 +83,6 @@ public class LogSenseAppender extends AppenderBase<ILoggingEvent> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
     public void setEndpointUrl(String endpointUrl) {
         this.endpointUrl = endpointUrl;

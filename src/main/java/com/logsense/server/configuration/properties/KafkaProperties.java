@@ -21,5 +21,4 @@ public class KafkaProperties {
     public static class Topic {
         private String ingestion;
     }
-
 }
