@@ -5,6 +5,8 @@ import com.logsense.server.persistence.jpa.entity.postgre.GroupedErrorEntity;
 import com.logsense.server.persistence.jpa.repository.GroupedErrorEntityRepository;
 import com.logsense.server.persistence.jpa.repository.LogEventElasticRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,7 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class ErrorGroupingService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ErrorGroupingService.class);
     private static final Pattern VARIABLE_PATTERN = Pattern.compile("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|\\d+");
 
     private final GroupedErrorEntityRepository groupedErrorRepository;
@@ -47,6 +50,7 @@ public class ErrorGroupingService {
         groupedError.setLastSeenAt(Instant.now());
         groupedErrorRepository.save(groupedError);
         logEventRepository.save(logEvent);
+        logger.info("Saved Log");
     }
 
     private String createTemplate(String message) {
@@ -70,7 +74,7 @@ public class ErrorGroupingService {
             }
             return hasString.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-256 algoritması bulunamadı.", e);
+            throw new RuntimeException("SHA-256 algorithm not found.", e);
 
         }
 
