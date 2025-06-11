@@ -20,3 +20,19 @@ kafka:
   autoOffsetReset: earliest
   topic:
     ingestion: logIngestion
+
+
+logsense:
+  appender:
+    enabled: true
+    endpoint-url: http://localhost:8080/api/v1/logs
+    service-name: my-new-project
+
+server:
+  port: 8081
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /documentation
