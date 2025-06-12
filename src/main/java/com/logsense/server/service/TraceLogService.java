@@ -37,7 +37,7 @@ public class TraceLogService {
         }
     }
 
-    private TraceLogEntity buildAndSaveTraceLogEntity(String hash, Long traceId) {
+    private void buildAndSaveTraceLogEntity(String hash, Long traceId) {
         TraceLogEntity newTraceLog = new TraceLogEntity();
         newTraceLog.setTraceId(traceId);
         newTraceLog.setErrorHash(hash);
