@@ -19,6 +19,10 @@ public class LogQueryService {
         return groupedErrorEntityRepository.findAll();
     }
 
+    public List<GroupedErrorEntity> getAllGroupedErrorByErrorHash(List<String> errorHashList) {
+        return groupedErrorEntityRepository.findByErrorHashIn(errorHashList);
+    }
+
     public List<LogEventElasticDocument> findLogsByErrorHash(String errorHash) {
         return logEventElasticRepository.findByErrorHash(errorHash);
     }

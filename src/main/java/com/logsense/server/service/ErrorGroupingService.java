@@ -30,6 +30,8 @@ public class ErrorGroupingService {
     private final GroupedErrorEntityRepository groupedErrorRepository;
     private final LogEventElasticRepository logEventRepository;
 
+    private final TraceLogService traceLogService;
+
     @Transactional
     public void processLogEvent(LogEvent logEvent) {
         String template = createTemplate(logEvent.getMessage());
@@ -49,6 +51,7 @@ public class ErrorGroupingService {
 
         groupedError.setTotalOccurrences(groupedError.getTotalOccurrences() + 1);
         groupedError.setLastSeenAt(Instant.now());
+        traceLogService.persistTraceId(hash);
         groupedErrorRepository.save(groupedError);
         logEventRepository.save(convertToDocument(logEvent));
         logger.info("Saved Log");
